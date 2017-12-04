@@ -26,8 +26,7 @@ class Stock < ApplicationRecord
 			csv = CSV.new(f, headers: :first_row, header_converters: header_converter)
 			csv.each do |row|
 				#同じ日が見つかればレコードを呼び出し、見つからなければ新しく作成
-				stock = find_by(date: row["date"]) || new
-#				stock = find_by(id: row["id"]) || new
+				stock = find_by(date: row[:date]) || new
 				#csvからデータを取得し、設定する
 				stock.attributes = row.to_hash.slice(*uppdatable_attributes)
 				#保存
@@ -38,7 +37,7 @@ class Stock < ApplicationRecord
 
 	#更新を許可するカラムの定義
 	def self.uppdatable_attributes
-		["date", "opening_price", "high_price", "low_price", "closing_price", "turnover_value", "turnover_price"]
+		[:date, :opening_price, :high_price, :low_price, :closing_price, :turnover_value, :turnover_price]
 	end
 
 end

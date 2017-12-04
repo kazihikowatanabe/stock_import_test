@@ -1,6 +1,14 @@
 <h1>株価情報</h1>
 
-<table>
+<p>CSVファイルを選択してください</p>
+<%= form_tag import_stocks_path, multipart: true do %>
+  <%= file_field_tag :file %>
+  <%= submit_tag "インポート" %>
+<% end %>
+
+<br>
+
+<table border="5" frame="box">
 	<thead>
 		<tr>
 			<th>日付</th>
@@ -28,9 +36,5 @@
 	</tbody>
 </table>
 
-<%= form_tag import_stocks_path, multipart: true do %>
-  <%= file_field_tag :file %>
-  <%= submit_tag "インポート" %>
-<% end %>
 
 <p>Find me in app/views/stocks/index.html.erb</p>
