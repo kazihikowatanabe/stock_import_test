@@ -18,8 +18,8 @@ ActiveRecord::Schema.define(version: 20171202235301) do
     t.float "high_price"
     t.float "low_price"
     t.float "closing_price"
-    t.integer "turnover_value"
-    t.integer "turnover_price"
+    t.integer "turnover_value", limit: 8
+    t.integer "turnover_price", limit: 8
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
