@@ -1,0 +1,38 @@
+<h1>株価情報</h1>
+
+<p>CSVファイルを選択してください</p>
+<%= form_tag import_stocks_path, multipart: true do %>
+  <%= file_field_tag :file %>
+  <%= submit_tag "インポート" %>
+<% end %>
+
+<br>
+
+<table border="5" frame="box">
+	<thead>
+		<tr>
+			<th>日付</th>
+			<th>始値</th>
+			<th>高値</th>
+			<th>安値</th>
+			<th>終値</th>
+			<th>出来高</th>
+			<th>売買代金</th>
+		</tr>
+	</thead>
+
+	<tbody>
+		<% @stocks.each do |stock| %>
+			<tr>
+				<td><%= stock.date %></td>
+				<td><%= sprintf("%.2f", stock.opening_price) unless stock.opening_price.nil? %></td>
+				<td><%= sprintf("%.2f", stock.high_price) unless stock.high_price.nil? %></td>
+				<td><%= sprintf("%.2f", stock.low_price) unless stock.low_price.nil? %></td>
+				<td><%= sprintf("%.2f", stock.closing_price) unless stock.closing_price.nil? %></td>
+				<td><%= stock.turnover_value %></td>
+				<td><%= stock.turnover_price %></td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>
+
