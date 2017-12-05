@@ -25,10 +25,10 @@
 		<% @stocks.each do |stock| %>
 			<tr>
 				<td><%= stock.date %></td>
-				<td><%= stock.opening_price %></td>
-				<td><%= stock.high_price %></td>
-				<td><%= stock.low_price %></td>
-				<td><%= stock.closing_price %></td>
+				<td><%= sprintf("%.2f", stock.opening_price) unless stock.opening_price.nil? %></td>
+				<td><%= sprintf("%.2f", stock.high_price) unless stock.high_price.nil? %></td>
+				<td><%= sprintf("%.2f", stock.low_price) unless stock.low_price.nil? %></td>
+				<td><%= sprintf("%.2f", stock.closing_price) unless stock.closing_price.nil? %></td>
 				<td><%= stock.turnover_value %></td>
 				<td><%= stock.turnover_price %></td>
 			</tr>
@@ -36,5 +36,3 @@
 	</tbody>
 </table>
 
-
-<p>Find me in app/views/stocks/index.html.erb</p>
